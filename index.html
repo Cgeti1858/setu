@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>男同涩图</title>
+<style>
+    /* 基本的响应式样式 */
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+    #randomImage {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+<script>
+function loadRandomImage() {
+    var request = new XMLHttpRequest();
+    request.open('GET', 'list.js', true);
+
+    request.onreadystatechange = function() {
+        if (request.readyState === 4 && request.status === 200) {
+            var links = request.responseText.split('\n');
+            var randomIndex = Math.floor(Math.random() * links.length);
+            var randomLink = links[randomIndex].trim();
+            document.getElementById('randomImage').src = randomLink;
+        }
+    };
+
+    request.send();
+}
+</script>
+</head>
+<body onload="loadRandomImage()">
+    <img id="randomImage" src="" alt="男同涩图">
+</body>
+</html>
